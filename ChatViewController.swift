@@ -1,10 +1,4 @@
-//
-//  ViewController.swift
-//  Flash Chat
-//
-//  Created by Angela Yu on 29/08/2015.
-//  Copyright (c) 2015 London App Brewery. All rights reserved.
-//
+
 
 import UIKit
 import Firebase
@@ -132,7 +126,11 @@ class ChatViewController: UIViewController , UITableViewDataSource , UITableView
         //TODO: Send the message to Firebase and save it in our database
     }
     
-    /* the function retrieve messages is called in viewDidLoad because our application needs to listen for messages. Inside of the retrieveMessages function we are observing for messages to be added in our database using an enum event handler i.e DataEventType.childAdded as our parameter and if the child has been added, we get the value of the database as a parameter from a closure. From the closure, we receive the instance of the most recent added value to our database as a parameter.*/
+    /* the function retrieve messages is called in viewDidLoad because our application needs to listen for messages. 
+    Inside of the retrieveMessages function we are observing for messages to be added in our database using an enum 
+    event handler i.e DataEventType.childAdded as our parameter and if the child has been added, we get the value of
+    the database as a parameter from a closure. From the closure, we receive the instance of the most recent added 
+    value to our database as a parameter.*/
     func retrieveMessages(){
         let messageDB = Database.database().reference().child("messages")
         messageDB.observe(DataEventType.childAdded) { (snapshot) in
@@ -147,7 +145,10 @@ class ChatViewController: UIViewController , UITableViewDataSource , UITableView
             self.configureTableView()
             self.messageTableView.reloadData() // calls the cellForRowAt table view method
             
-        }/*dataEventtype.childAdded is a case which means that something has just been added to the database. this method is listening to the database. you can also listen if a child is removed. The datasnapshot holds the data that just has been added and it is inside of a closure as a oarameter. the closure gets called every time a new item has been added to the database and it gives access to the message text field and sender field.*/
+        }/*dataEventtype.childAdded is a case which means that something has just been added to the database. this method 
+        is listening to the database. you can also listen if a child is removed. The datasnapshot holds the data that just 
+        has been added and it is inside of a closure as a oarameter. the closure gets called every time a new item has been
+        added to the database and it gives access to the message text field and sender field.*/
     }
     
 
